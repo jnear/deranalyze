@@ -35,9 +35,11 @@ EOS
 }
 
 # make a new gemset for this app
-puts "Making a new gemset for #{app_dir}..."
-system "rvm gemset create #{app_dir}"
-system "rvm gemset use #{app_dir}"
+# puts "Making a new gemset for #{app_dir}..."
+# system "rvm gemset create #{app_dir}"
+# system "rvm gemset use #{app_dir}"
+# system "rvm gemset list"
+# given up on gemsets
 
 # install gems
 puts "Running bundle install..."
@@ -50,5 +52,9 @@ system "cp ../database.yml ./config/database.yml"
 # now init the database
 puts "Initializing database (rake db:migrate)..."
 system "bundle exec rake db:migrate"
+
+# now run the analysis
+puts "Running analysis..."
+system "bundle exec rake derailer"
 
 Dir.chdir ".."
