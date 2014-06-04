@@ -20,7 +20,7 @@ open('Gemfile', 'a') { |f|
   f.puts <<EOS
 
 # Added by derailer analysis
-gem 'derailer', :git => 'https://github.com/jnear/derailer.git'
+gem 'derailer', :path => '/home/ubuntu/derailer'
 gem 'method_source', "~>0.8.3", :git => 'https://github.com/aleksandarmilicevic/method_source.git'
 gem 'sdg_utils', :git => 'https://github.com/jnear/sdg_utils.git'
 
@@ -56,5 +56,9 @@ system "bundle exec rake db:migrate"
 # now run the analysis
 puts "Running analysis..."
 system "bundle exec rake derailer"
+
+# now copy the files into the results directory
+system "time -o time.txt rake derailer > derailer_output.txt 2>&1"
+system "cp -r /home/ubuntu/derailer/lib/derailer/viz ."
 
 Dir.chdir ".."
