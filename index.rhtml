@@ -1,0 +1,9 @@
+<body>
+
+<list>
+<% servlet_request.query[:dirs].each do |dir| %>
+   <li><a href='<%= dir %>/viz'><%= dir %></a>
+<% end %>
+</list>
+
+</body>
