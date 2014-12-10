@@ -21,3 +21,23 @@ end
 
 puts results.length
 #puts results
+
+
+
+rails_apps = 0
+results.each do |url|
+  r1,r2 = url.split("https://")
+  system "git clone https://anonymous:anonymous@#{r2}.git > /dev/null 2>&1"
+  dir = url.split("/").last
+
+  if File.exist?("#{dir}/app")
+    # then it's a rails app
+    puts "IS a rails app: #{dir}"
+  else
+    # not a rails app
+    puts "NOT a rails app: #{dir}"
+    system "rm -rf #{dir} > /dev/null"
+  end
+end
+
+puts "we got #{rails_apps} rails apps"
