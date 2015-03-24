@@ -31,7 +31,7 @@ repos = [
 "rails-api-authentication"
 ]
 
-repos = ["ribbit"]
+#repos = ["ribbit"]
 
 repos.each do |r|
   time = `cat #{r}/time.txt`
@@ -40,5 +40,5 @@ repos.each do |r|
   exposures = `grep 'NUMBER OF EXPOSU' #{r}/derailer_output.txt`
   num_exposures = exposures.split(" ")[3]
 
-  puts "#{r},#{total_time},#{num_exposures}"
+  puts "#{r},#{3*(100.0*total_time).round / 100.0},#{num_exposures}"
 end
